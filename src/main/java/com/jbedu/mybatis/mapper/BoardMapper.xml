@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.jbedu.mybatis.dao.BoardDao">
+	<insert id="boardWriteDao">
+		INSERT INTO mvc_board(bname, btitle, bcontent, bhit) VALUES (#{param1},#{param2},#{param3},0)
+	</insert>    
+	
+	
+	<select id="boardListDao" resultType="com.jbedu.mybatis.dto.BoardDto">
+		SELECT * FROM mvc_board ORDER BY bnum desc
+	</select>
+	
+	<delete id="boardDeleteDao">
+		DELETE FROM mvc_board WHERE bnum =  #{param1} 
+	</delete>
+	
+	<update id="boardUpdateDao">
+		UPDATE mvc_board SET bname = #{param1}, btitle=#{param2}, bcontent=#{param3} WHERE bnum=#{param4}  
+	</update>
+	
+	<select id="boardContentDao" resultType="com.jbedu.mybatis.dto.BoardDto">
+		SELECT * FROM mvc_board WHERE bnum=#{param1}
+	</select>
+	
+	<update id="HitCountDao">
+		UPDATE mvc_board SET bhit=bhit+1 WHERE bnum=#{param1}  
+	</update>
+	
+	
+</mapper>
